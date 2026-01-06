@@ -12,5 +12,36 @@
             sequence="1"
             action="action_nhan_vien"
         />
+
+        <menuitem name="Phòng Ban" 
+            id="menu_phong_ban" 
+            parent="menu_root" 
+            sequence="1"
+            action="action_phong_ban"
+        />
+
+        <menuitem id="menu_chuc_vu"
+          name="Chức Vụ"
+          parent="menu_root"
+          action="action_chuc_vu"
+          sequence="3"/>
+
+        <menuitem id="menu_lich_su_cong_tac"
+          name="Lịch Sử Công Tác"
+          parent="menu_root"
+          action="action_lich_su"
+          sequence="4"/>
+
+        <menuitem id="menu_chung_chi"
+          name="Văn Bằng &amp; Chứng Chỉ"
+          parent="menu_root"
+          action="action_chung_chi"
+          sequence="5"/>
+
+          <menuitem id="menu_cham_cong"
+          name="Bảng Chấm Công"
+          parent="menu_root"
+          action="action_cham_cong"
+          sequence="6"/>
     </data>
 </odoo>
