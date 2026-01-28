@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ai_bot_wizard_form" model="ir.ui.view">
+            <field name="name">ai.bot.wizard.form</field>
+            <field name="model">ai.bot.wizard</field>
+            <field name="arch" type="xml">
+                <form string="AI ChatBot">
+                    <sheet>
+                        <div class="text-center mb-4">
+                            <h1 style="color: #714B67;">MONKEY AI ChatBot 🙊</h1>
+                            <p class="text-muted">Hỏi tôi về Nhân sự, Dự án hoặc Tài chính...</p>
+                        </div>
+                        
+                        <group>
+                            <field name="question" placeholder="Hỏi bất kì câu hỏi nào liên quan đến nhân sự/dự án của bạn !"/>
+                        </group>
+                        
+                        <div class="text-center mt-3 mb-3">
+                            <button name="action_ask_ai" 
+                                    string="Gửi câu hỏi" 
+                                    type="object" 
+                                    class="btn btn-primary oe_highlight"
+                                    style="font-size: 16px; padding: 10px 30px;"/>
+                        </div>
+                        
+                        <group string="Trả lời" attrs="{'invisible': [('answer', '=', False)]}">
+                            <div style="background-color: #f1f8ff; padding: 15px; border-radius: 8px; border: 1px solid #cce5ff;">
+                                <field name="answer" widget="html" nolabel="1" readonly="1"/>
+                            </div>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Đóng lại" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ai_chat_wizard" model="ir.actions.act_window">
+            <field name="name">Bắt đầu Chat</field>
+            <field name="res_model">ai.bot.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field> </record>
+
+
+        <record id="view_ai_history_tree" model="ir.ui.view">
+            <field name="name">ai.bot.history.tree</field>
+            <field name="model">ai.bot.history</field>
+            <field name="arch" type="xml">
+                <tree string="Lịch sử Chat" create="0" edit="0" delete="1">
+                    <field name="create_date"/>
+                    <field name="question"/>
+                    <field name="answer" widget="html" options="{'truncate_length': 100}"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_ai_history_form" model="ir.ui.view">
+            <field name="name">ai.bot.history.form</field>
+            <field name="model">ai.bot.history</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="question" class="oe_edit_only"/>
+                            <h1><field name="question"/></h1>
+                        </div>
+                        <group>
+                            <field name="create_date"/>
+                        </group>
+                        <separator string="Câu trả lời từ AI"/>
+                        <div style="background-color: #f9f9f9; padding: 20px; border-radius: 5px;">
+                            <field name="answer" widget="html" readonly="1"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ai_history" model="ir.actions.act_window">
+            <field name="name">Lịch sử</field>
+            <field name="res_model">ai.bot.history</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Chưa có lịch sử chat nào!
+                </p>
+                <p>
+                    Hãy bấm vào menu <b>"💬 Bắt đầu Chat"</b> phía trên để hỏi AI.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_ai_root" 
+                  name="Trợ lý AI" 
+                  sequence="99" 
+                  action="action_ai_history"/>
+
+        <menuitem id="menu_ai_chat_popup" 
+                  name="💬 Bắt đầu Chat" 
+                  parent="menu_ai_root" 
+                  sequence="1" 
+                  action="action_ai_chat_wizard"/>
+
+        <menuitem id="menu_ai_history" 
+                  name="📜 Xem lịch sử" 
+                  parent="menu_ai_root" 
+                  sequence="2" 
+                  action="action_ai_history"/>
+
+    </data>
+</odoo>

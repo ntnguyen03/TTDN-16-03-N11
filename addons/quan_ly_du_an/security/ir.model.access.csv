@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_quan_ly_du_an,access_quan_ly_du_an,model_quan_ly_du_an,base.group_user,1,1,1,1
+access_loai_du_an,access_loai_du_an,model_loai_du_an,base.group_user,1,1,1,1
+access_chi_phi_du_an,access_chi_phi_du_an,model_chi_phi_du_an,base.group_user,1,1,1,1
+access_quan_ly_cong_viec,access_quan_ly_cong_viec,model_quan_ly_cong_viec,base.group_user,1,1,1,1
+access_nhat_ky_cong_viec,access_nhat_ky_cong_viec,model_nhat_ky_cong_viec,base.group_user,1,1,1,1

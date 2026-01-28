@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_bot_history,ai.bot.history,model_ai_bot_history,base.group_user,1,1,1,1
+access_ai_bot_wizard,ai.bot.wizard,model_ai_bot_wizard,base.group_user,1,1,1,1

@@ -9,6 +9,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-odoo}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-odoo}
       PGDATA: /data/postgres
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
     volumes:
        - /home/ttdn/ttdn_k15/database_ttdn/_data:/data/postgres
     ports:

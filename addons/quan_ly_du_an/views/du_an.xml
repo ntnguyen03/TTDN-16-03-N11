@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_quan_ly_du_an_search" model="ir.ui.view">
+            <field name="name">quan_ly_du_an.search</field>
+            <field name="model">quan_ly_du_an</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="ten_du_an"/>
+                    <field name="quan_ly_id"/>
+                    <filter string="Đang thực hiện" name="dang_lam" domain="[('trang_thai', '=', 'dang_lam')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_quan_ly_du_an_form" model="ir.ui.view">
+            <field name="name">quan_ly_du_an.form</field>
+            <field name="model">quan_ly_du_an</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="trang_thai" widget="statusbar" options="{'clickable': '1'}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_read_only" style="font-size:25px">Dự Án / Kế Hoạch</div>
+                        <h1><field name="ten_du_an"/></h1>
+                        
+                        <group>
+                            <group string="Thông tin dự án">
+                                <field name="quan_ly_id" widget="many2one_avatar"/>
+                                <field name="loai_du_an_id"/>
+                                <field name="ngay_bat_dau"/>
+                                <field name="ngay_ket_thuc"/>
+                            </group>
+                            
+                            <group string="Tổng quan Tài chính">
+                                <field name="chi_phi_van_hanh"/>
+                                <div class="o_horizontal_separator">Tổng kết</div>
+                                
+                                <field name="tong_ngan_sach" widget="monetary"/>
+                                <field name="tong_thuc_te" widget="monetary" decoration-danger="tong_thuc_te > tong_ngan_sach"/>
+                                
+                                <field name="tong_chenh_lech" widget="monetary" 
+                                       decoration-success="tong_chenh_lech > 0" 
+                                       decoration-danger="tong_chenh_lech &lt; 0"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            <page name="page_chi_phi" string="Bảng kê chi phí">
+                                <field name="chi_phi_ids">
+                                    <tree editable="bottom">
+                                        <field name="du_an_id" invisible="1"/>
+                                        
+                                        <field name="cong_viec_id" options="{'no_create': True}"/>
+                                        
+                                        <field name="so_tien_du_kien" sum="Tổng dự kiến"/>
+                                        <field name="so_tien_thuc_te" sum="Tổng thực tế"/>
+                                        
+                                        <field name="chenh_lech" sum="Tổng dư/thiếu" 
+                                               decoration-success="chenh_lech > 0" 
+                                               decoration-danger="chenh_lech &lt; 0"/>
+                                        <field name="ghi_chu"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            
+                            <page string="Thành viên dự án">
+                                <field name="thanh_vien_ids">
+                                    <tree editable="bottom">
+                                        <field name="ten_nhan_vien"/>
+                                        <field name="chuc_vu_id"/>
+                                        <field name="phong_ban_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_quan_ly_du_an_tree" model="ir.ui.view">
+            <field name="name">quan_ly_du_an.tree</field>
+            <field name="model">quan_ly_du_an</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="ten_du_an"/>
+                    <field name="quan_ly_id"/>
+                    <field name="ngay_bat_dau"/>
+                    <field name="ngay_ket_thuc"/>
+                    <field name="tong_ngan_sach" sum="Tổng ngân sách"/>
+                    <field name="trang_thai" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_quan_ly_du_an" model="ir.actions.act_window">
+            <field name="name">Dự Án</field>
+            <field name="res_model">quan_ly_du_an</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

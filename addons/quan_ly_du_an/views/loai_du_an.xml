@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_loai_du_an_tree" model="ir.ui.view">
+            <field name="name">loai_du_an.tree</field>
+            <field name="model">loai_du_an</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="ten_loai"/>
+                    <field name="mo_ta"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_loai_du_an" model="ir.actions.act_window">
+            <field name="name">Loại Dự Án</field>
+            <field name="res_model">loai_du_an</field>
+            <field name="view_mode">tree</field>
+        </record>
+    </data>
+</odoo>
